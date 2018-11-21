@@ -1,5 +1,5 @@
 {
-  "name": "match",
+  "name": "@careteen/match",
   "version": "0.1.0",
   "description": "match",
   "main": "dist/index.js",
