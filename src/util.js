@@ -5,7 +5,7 @@ import {
 } from '@careteen/is'
 
 export function isTemplate(v) {
-  return isString(v) && /\{\{([^\}]+)\}}/.test(v)
+  return isString(v) && /{{([^}]+)}}/.test(v)
 }
 
 export function hasOwn(object, p) {
@@ -29,7 +29,7 @@ export function map(src, rules, config) {
       if (isFunction(rule)) {
         out[rkey] = rule.call({}, src) // 注入参数$scope为当前对象
       } else if (isTemplate(rule)) {
-        let exp = rule.replace(/\{\{/g, 'src.').replace(/\}\}/g, '')
+        let exp = rule.replace(/{{/g, 'src.').replace(/}}/g, '')
         out[rkey] = eval('' + exp + '') // eval！！简单表达式
       } else if (isObject(rule)) {
         out[rkey] = map({}, rule, config) // 对象递归转换

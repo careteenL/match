@@ -5,11 +5,7 @@
  * @param {Object} config fill:填充, filter: 过滤 {fill: true, filter: [null, '']}
  * @return {Object|Array}
  */ 
-import {
-  isFunction,
-  isObject,
-  isArray
-} from '@careteen/is'
+import { isArray } from '@careteen/is'
 
 import { map } from './util'
 
