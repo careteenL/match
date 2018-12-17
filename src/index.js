@@ -37,7 +37,9 @@ export default function match(
 
   if (isArray(src)) {
     // match(data, {pid: '{{id}}'})
-    src.forEach(function(s) {
+    src.forEach((s, sIdx) => {
+      // #1217 为数组每项新增下标标识
+      s._index = sIdx
       out.push(map(s, rules, config))
     })
   } else {

@@ -12,6 +12,7 @@
   - [对象简单映射并填充](#对象简单映射并填充)
   - [对象简单映射并过滤null/''/undefined](#对象简单映射并过滤null/''/undefined)
   - [对象映射自定义属性](#对象映射自定义属性)
+  - [对象数组映射自定义属性新增下标](#对象数组映射自定义属性新增下标)
 
 ## 描述
 
@@ -151,6 +152,45 @@ let actualData = Match(preData, {
     return `${$scope.name}.Wang` 
   },
   'realAge': '{{age}}'
+})
+
+isEqual(actualData, expectData) // true
+```
+
+#### 对象数组映射自定义属性新增下标
+```js
+import Match from '@careteen/match'
+import { isEqual } from '@careteen/is'
+
+let preData = [
+  {
+    name: 'careteen',
+    age: '23'
+  },
+  {
+    name: 'lanlan',
+    age: '23'
+  }
+]
+let expectData = [
+  {
+    name: 'careteen',
+    age: '23',
+    isFirst: true
+  },
+  {
+    name: 'lanlan',
+    age: '23',
+    isFirst: false
+  }
+]
+let actualData = Match(preData, {
+  'name': '{{name}}',
+  'age': '{{age}}',
+  // 新增一个下标_index 
+  'isFirst': $scope => {
+    return $scope._index === 0
+  }
 })
 
 isEqual(actualData, expectData) // true

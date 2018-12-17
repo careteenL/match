@@ -104,4 +104,37 @@ describe('Match', () => {
     })
     expect(Is.isEqual(actualData, expectData)).to.equal(true)
   })  
+
+  it('object custom prop index', () => {
+    let preData = [
+      {
+        name: 'careteen',
+        age: '23'
+      },
+      {
+        name: 'lanlan',
+        age: '23'
+      }
+    ]
+    let expectData = [
+      {
+        name: 'careteen',
+        age: '23',
+        isFirst: true
+      },
+      {
+        name: 'lanlan',
+        age: '23',
+        isFirst: false
+      }
+    ]
+    let actualData = Match(preData, {
+      'name': '{{name}}',
+      'age': '{{age}}',
+      'isFirst': $scope => {
+        return $scope._index === 0
+      }
+    })
+    expect(Is.isEqual(actualData, expectData)).to.equal(true)
+  })   
 })

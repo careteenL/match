@@ -1,5 +1,5 @@
 /*!
- * match v0.1.0
+ * @careteen/match v0.2.0
  * (c) 2018-2018 careteenL <15074806497@163.com>
  * Released under the MIT License.
  */
@@ -92,7 +92,9 @@ function match() {
 
   if (isArray(src)) {
     // match(data, {pid: '{{id}}'})
-    src.forEach(function (s) {
+    src.forEach(function (s, sIdx) {
+      // #1217 为数组每项新增下标标识
+      s._index = sIdx;
       out.push(map(s, rules, config));
     });
   } else {
